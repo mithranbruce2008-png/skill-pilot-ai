@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --sp-bg: #070b19;
+  --sp-bg-secondary: #0d1429;
+  --sp-surface: #111936;
+  --sp-surface-glass: rgba(17, 25, 54, 0.86);
+  --sp-border: rgba(148, 163, 184, 0.24);
+  --sp-text: #f1f5f9;
+  --sp-text-muted: #cbd5e1;
+  --sp-accent: #4f46e5;
+  --sp-accent-hover: #4338ca;
+  --sp-accent-text: #ffffff;
+  --sp-success: #10b981;
+  --sp-warning: #f59e0b;
+  --sp-danger: #ef4444;
+  --sp-focus: #93c5fd;
+  --sp-font-display: 'Outfit', system-ui, sans-serif;
+  --sp-font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --sp-font-mono: 'JetBrains Mono', monospace;
+  --sp-transition-speed: 220ms;
+}
+
+@layer base {
+  html {
+    font-family: var(--sp-font-body);
+    background-color: var(--sp-bg);
+    color: var(--sp-text);
+    color-scheme: dark;
+  }
+
+  html[data-theme='clean-light'] {
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--sp-bg);
+    color: var(--sp-text);
+    transition: background-color var(--sp-transition-speed) ease, color var(--sp-transition-speed) ease;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--sp-font-display);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--sp-font-mono);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--sp-focus);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes sp-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+.sp-shake {
+  animation: sp-shake 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sp-transition-speed: 0ms;
+  }
+  .sp-shake {
+    animation: none !important;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+html[data-reduced-motion='true'] {
+  --sp-transition-speed: 0ms;
+}
+
+html[data-reduced-motion='true'] .sp-shake {
+  animation: none !important;
+}
+
+.sp-tabular {
+  font-variant-numeric: tabular-nums;
+}
